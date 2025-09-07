@@ -23,7 +23,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   const { pathname } = useRouter();
 
-    const { isOpen } = useSidebar();
+  const { isOpen } = useSidebar();
 
 
   // No Layout
@@ -40,16 +40,18 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
 
   return (
-     <main className="bg-white dark:bg-black text-gray-900 dark:text-white transition-colors duration-300 relative min-h-screen flex">
-<Sidebar />
+    <main className="bg-white dark:bg-black text-gray-900 dark:text-white transition-colors duration-300 relative min-h-screen flex">
+      <Sidebar />
 
       <div
-        className={`flex flex-1 flex-col items-center transition-all duration-300 ${
-          isOpen ? "ml-64" : "ml-20"
-        }`}
+        className={`flex flex-1 flex-col items-center transition-all duration-300 ${isOpen ? "ml-64" : "ml-20"
+          }`}
       >
-        <Navbar />
-        <div className="mt-12 flex-1 w-full overflow-y-auto">{children}</div>
+        <div className=" flex-1 w-full overflow-y-auto">
+          <Navbar />
+
+          {children}
+          </div>
         <Footer />
       </div>
     </main>
