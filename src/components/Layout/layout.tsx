@@ -5,6 +5,7 @@ import Footer from '../Footer';
 import { useUIStore } from '@/store';
 import Navbar from '../Navbar';
 import Sidebar from '../Sidebar/Sidebar';
+import { useSidebar } from '@/store/useSidebar';
 
 interface LayoutProps {
   children: ReactNode;
@@ -22,6 +23,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   const { pathname } = useRouter();
 
+    const { isOpen } = useSidebar();
+
+
   // No Layout
   const noLayoutPaths = ['/404'];
 
@@ -36,15 +40,19 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
 
   return (
-    <main className="bg-white dark:bg-black text-gray-900 dark:text-white transition-colors duration-300 relative min-h-screen flex">
-      <Sidebar />
-      <div className="flex-1 ">
+     <main className="bg-white dark:bg-black text-gray-900 dark:text-white transition-colors duration-300 relative min-h-screen flex">
+<Sidebar />
+
+      <div
+        className={`flex flex-1 flex-col items-center transition-all duration-300 ${
+          isOpen ? "ml-64" : "ml-20"
+        }`}
+      >
         <Navbar />
-        <div className=' overflow-y-auto'>{children}</div>
-        <Footer/>
+        <div className="mt-12 flex-1 w-full overflow-y-auto">{children}</div>
+        <Footer />
       </div>
     </main>
-
 
   );
 };

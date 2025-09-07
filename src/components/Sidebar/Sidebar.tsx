@@ -18,9 +18,9 @@ const sidebarVariants = {
 };
 
 const links = [
-  { href: "/", label: "Home", icon: Home },
-  { href: "/profile", label: "Profile", icon: User },
-  { href: "/settings", label: "Settings", icon: Settings },
+  { href: "/", label: "Dashboard", icon: Home },
+  { href: "/projects", label: "Projects", icon: Settings },
+  { href: "/clients", label: "Clients", icon: User },
 ];
 
 export default function Sidebar() {
