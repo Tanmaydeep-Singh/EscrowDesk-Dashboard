@@ -1,5 +1,8 @@
 'use client';
 
+import Overview from "@/components/Dashboard/OverView/Overview";
+import ProjectStatusOverview from "@/components/Dashboard/OverView/Project-stats/ProjectStatusOverview";
+import ProjectStats from "@/components/Dashboard/OverView/Project-status/ProjectStats";
 import Stats from "@/components/Dashboard/Stats/Stats";
 
 
@@ -15,12 +18,7 @@ export default function Home() {
 
       {/* Stats */}
       <Stats />
-
-      {/* Revenue Overview + Sidebar */}
-      {/* <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <RevenueOverview />
-        <RevenueStats />
-      </div> */}
+      <Overview/>
     </div>
 
 
