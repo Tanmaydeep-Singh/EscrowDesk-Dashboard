@@ -2,7 +2,7 @@ import StatsCard from "./StatsCard";
 
 export default function ProjectStats() {
   return (
-    <div className="p-4 rounded-md border border-gray-200">
+    <div className="p-4 rounded-md border border-white/10 ">
       <h2 className="text-xl font-bold text-white">Project Stats</h2>
       <p className="text-sm text-gray-400">Current project metrics</p>
 
