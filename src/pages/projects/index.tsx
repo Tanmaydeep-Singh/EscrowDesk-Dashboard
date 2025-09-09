@@ -1,9 +1,14 @@
+import ProjectHead from '@/components/Project/ProjectHead/ProjectHead'
 import React from 'react'
 
 const Projects = () => {
   return (
-    <div className="min-h-screen relative space-y-8 flex flex-col justify-center items-center">
-      Projects
+   <div className=" p-6 space-y-6">
+      
+      <ProjectHead/>
+
+
+
     </div>
   )
 }
