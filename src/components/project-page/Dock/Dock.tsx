@@ -2,6 +2,7 @@ import React from "react";
 import { AiOutlineEdit, AiOutlineFileText, AiOutlineUser } from "react-icons/ai";
 import { FaGithub } from "react-icons/fa6";
 import { DockIcon } from "./DockIcons";
+import { BiTerminal } from "react-icons/bi";
 
 interface DockProps {
   activeTab: string;
@@ -21,6 +22,10 @@ export const Dock = ({ activeTab, setActiveTab } :DockProps) => {
         </DockIcon>
         <DockIcon onClick={() => setActiveTab("Tasks")} active={activeTab === "Tasks"}>
           <AiOutlineUser size={24} className="text-gray-300" />
+        </DockIcon>
+
+         <DockIcon onClick={() => setActiveTab("Logs")} active={activeTab === "Logs"}>
+          <BiTerminal size={24} className="text-gray-300" />
         </DockIcon>
 
         {/* Separator */}

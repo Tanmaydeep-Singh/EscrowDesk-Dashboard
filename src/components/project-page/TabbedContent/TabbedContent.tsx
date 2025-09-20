@@ -7,12 +7,14 @@ import OverviewTab from "../Tabs/OverviewTab";
 import { ProgressTab } from "../Tabs/ProgressTab";
 import ContractTab from "../Tabs/ContractTab";
 import TasksTab from "../Tabs/TasksTab";
+import LogsTab from "../Tabs/LogsTab";
 
 const tabs = [
   { name: "Overview", component: <OverviewTab /> },
   { name: "Tasks", component: <TasksTab /> },
   { name: "Contract", component: <ContractTab /> },
   { name: "Progress", component: <ProgressTab /> },
+  { name: "Logs", component: <LogsTab/>}
 ];
 
 const TabbedContent = () => {
