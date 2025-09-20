@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 const projectsData = [
     { id: 1, name: "Website Redesign", client: "Olivia Rhye", progress: 70, eod: "2025-09-30", status: "In Progress" },
@@ -34,10 +35,9 @@ const ProjectsTable = () => {
                 <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
                 <div className="absolute bottom-1/4 left-1/2 w-96 h-96 bg-teal-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
             </div>
-
             <div className="w-full flex-grow flex flex-col items-center z-10">
-        
-                
+
+
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -93,7 +93,9 @@ const ProjectsTable = () => {
                                         </td>
                                         <td className="p-4 text-center">
                                             <button className="px-4 py-1.5 text-sm font-medium rounded-full border border-purple-500 text-purple-400 hover:bg-purple-500/10 transition">
-                                                View
+                                                <Link href={`/project/${project.id}`} >
+                                                    View
+                                                </Link>
                                             </button>
                                         </td>
                                     </motion.tr>
@@ -101,7 +103,7 @@ const ProjectsTable = () => {
                                 {/* Add empty rows to fill space */}
                                 {Array.from({ length: itemsPerPage - displayedProjects.length }).map((_, index) => (
                                     <tr key={`empty-${index}`} className="h-[74px] border-b border-white/5">
-                                        <td  className="p-4"></td>
+                                        <td className="p-4"></td>
                                     </tr>
                                 ))}
                             </tbody>

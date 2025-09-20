@@ -6,11 +6,14 @@ import { Moon, Sun, Search } from "lucide-react";
 import { useUIStore } from "@/store";
 import { motion } from "framer-motion";
 
-// Utility to format route into page name
-const getPageName = (pathname: string) => {
+const getPageName = (pathname?: string) => {
+  if (!pathname) return "Home"; 
   if (pathname === "/") return "Home";
-  return pathname.replace("/", "").charAt(0).toUpperCase() + pathname.slice(2);
+
+  const page = pathname.replace("/", "");
+  return page.charAt(0).toUpperCase() + page.slice(1);
 };
+
 
 const Navbar = () => {
   const pathname = usePathname();
