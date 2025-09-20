@@ -58,6 +58,24 @@ const tasksData = [
     due: "2025-09-22",
     milestone: "Feedback Loop",
   },
+   {
+    id: 5,
+    name: "Deploy to Staging",
+    priority: "High",
+    status: "Completed",
+    assignee: "Candice Wu",
+    due: "2025-09-18",
+    milestone: "Pre-Release",
+  },
+  {
+    id: 6,
+    name: "Client Review Meeting",
+    priority: "Medium",
+    status: "Pending",
+    assignee: "Ryan G.",
+    due: "2025-09-22",
+    milestone: "Feedback Loop",
+  },
 ];
 
 const TasksTab = () => {
@@ -77,7 +95,7 @@ const TasksTab = () => {
         <div className="absolute bottom-1/4 left-1/2 w-96 h-96 bg-teal-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
       </div>
 
-      <div className="w-full flex-grow flex flex-col items-center z-10">
+      <div className=" min-h-[55vh] w-full flex-grow flex flex-col items-center z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
