@@ -9,7 +9,7 @@ interface CardProps {
 
 const Card = ({ title, value, subtitle, trend }: CardProps) => {
   return (
-    <div className="bg-neutral-900 p-4 rounded-xl shadow w-full">
+    <div className="bg-gray-50/20 p-4 rounded-xl shadow w-full">
       <div className="flex justify-between items-center mb-2">
         <h3 className="text-sm text-gray-400">{title}</h3>
         {trend && <span className="text-xs text-green-400">{trend}</span>}

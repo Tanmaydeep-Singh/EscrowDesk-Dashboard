@@ -3,7 +3,7 @@ import Card from "../Cards/Cards";
 
 const Stats= () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="w-full  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
       <Card title="Total Revenue" value="$0" subtitle="Collection needs attention" trend="0.0%" />
       <Card title="Active Projects" value="0" subtitle="Completion needs focus" trend="0.0%" />
       <Card title="Tasks Completed" value="0" subtitle="Trending up this week" trend="+0.0%" />

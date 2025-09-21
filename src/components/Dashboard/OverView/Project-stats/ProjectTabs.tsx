@@ -9,7 +9,7 @@ export default function ProjectTabs() {
 
   return (
     <div className="flex items-center justify-between">
-      <div className="flex items-center gap-6 rounded-lg border border-white/10 dark:border-white/10 bg-white/50 dark:bg-black/50 backdrop-blur-md px-6 py-3 shadow-lg">
+      <div className="flex items-center gap-6 rounded-lg border border-white/10 dark:border-white/10 bg-white/20 backdrop-blur-md px-6 py-3 shadow-lg">
         {tabs.map((tab) => (
           <button
             key={tab}

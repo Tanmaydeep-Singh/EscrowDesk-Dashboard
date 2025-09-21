@@ -5,7 +5,7 @@ import ProjectStats from './Project-status/ProjectStats'
 const Overview = () => {
     return (
 
-        <div className="flex gap-4 mt-20">
+        <div className="w-full flex gap-4 mt-20">
 
             <div className="flex-1">
                 <ProjectStatusOverview />
