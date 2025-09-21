@@ -18,7 +18,7 @@ export default function OverviewTab() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: idx * 0.2 }}
-                        className="bg-neutral-900 p-5 rounded-2xl shadow-md border border-neutral-800"
+                        className="bg-gray-50/20 p-5 rounded-2xl shadow-md border border-neutral-800"
                     >
                         <div className="flex items-center gap-3">
                             <item.icon className="text-purple-400 w-6 h-6" />
@@ -35,7 +35,7 @@ export default function OverviewTab() {
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="bg-neutral-900 p-5 rounded-2xl border border-neutral-800"
+                className="bg-gray-50/20 p-5 rounded-2xl border border-neutral-800"
             >
                 <h2 className="text-lg font-semibold text-white mb-4">Recent Activity</h2>
                 <ul className="space-y-3 text-gray-300 text-sm">
@@ -60,7 +60,7 @@ export default function OverviewTab() {
                     <a
                         key={idx}
                         href={link.href}
-                        className="flex items-center gap-2 bg-neutral-900 hover:bg-neutral-800 p-4 rounded-xl border border-neutral-800 transition"
+                        className="flex items-center gap-2 bg-gray-50/20 p-4 rounded-xl border border-neutral-800 transition"
                     >
                         <link.icon className="text-purple-400 w-5 h-5" />
                         <span className="text-white text-sm font-medium">{link.title}</span>
