@@ -3,6 +3,7 @@ import { AiOutlineEdit, AiOutlineFileText, AiOutlineUser } from "react-icons/ai"
 import { FaGithub } from "react-icons/fa6";
 import { DockIcon } from "./DockIcons";
 import { BiTerminal } from "react-icons/bi";
+import { Settings } from "lucide-react";
 
 interface DockProps {
   activeTab: string;
@@ -33,6 +34,9 @@ export const Dock = ({ activeTab, setActiveTab } :DockProps) => {
 
         <DockIcon onClick={() => setActiveTab("Progress")} active={activeTab === "Progress"}>
           <FaGithub size={24} className="text-gray-300" />
+        </DockIcon>
+         <DockIcon onClick={() => setActiveTab("Settings")} active={activeTab === "Settings"}>
+          <Settings size={24} className="text-gray-300" />
         </DockIcon>
       </div>
     </div>

@@ -8,13 +8,15 @@ import { ProgressTab } from "../Tabs/ProgressTab";
 import ContractTab from "../Tabs/ContractTab";
 import TasksTab from "../Tabs/TasksTab";
 import LogsTab from "../Tabs/LogsTab";
+import SettingsTab from "../Tabs/SettingsTab";
 
 const tabs = [
   { name: "Overview", component: <OverviewTab /> },
   { name: "Tasks", component: <TasksTab /> },
   { name: "Contract", component: <ContractTab /> },
   { name: "Progress", component: <ProgressTab /> },
-  { name: "Logs", component: <LogsTab/>}
+  { name: "Logs", component: <LogsTab/>},
+  { name: "Settings",component: <SettingsTab/>}
 ];
 
 const TabbedContent = () => {
@@ -38,7 +40,7 @@ const TabbedContent = () => {
         >
           {/* Header with Dock */}
           <div className="flex items-center justify-between p-2">
-            <h1 className="text-2xl font-bold text-white">Project Name</h1>
+            <h1 className="text-3xl font-bold text-white ml-3">{activeTab}</h1>
             <Dock activeTab={activeTab} setActiveTab={setActiveTab} />
           </div>
 
