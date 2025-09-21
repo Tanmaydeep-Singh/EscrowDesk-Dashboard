@@ -11,6 +11,9 @@ const getPageName = (pathname?: string) => {
   if (pathname === "/") return "Home";
 
   const page = pathname.replace("/", "");
+
+  if(pathname.includes("/"))
+    return "Escrow"
   return page.charAt(0).toUpperCase() + page.slice(1);
 };
 
@@ -41,7 +44,7 @@ const Navbar = () => {
         {/* Middle: Search Bar */}
         <div className="flex-1 max-w-md mx-6">
           <div className="relative">
-            <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+            <Search className="absolute left-3 top-2.5 h-5 w-5 text-white" />
             <input
               type="text"
               placeholder="Search..."
