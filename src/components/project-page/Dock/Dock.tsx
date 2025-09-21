@@ -2,15 +2,17 @@ import React from "react";
 import { AiOutlineEdit, AiOutlineFileText, AiOutlineUser } from "react-icons/ai";
 import { FaGithub } from "react-icons/fa6";
 import { DockIcon } from "./DockIcons";
-import { BiTerminal } from "react-icons/bi";
+import { BiAddToQueue, BiTerminal } from "react-icons/bi";
 import { Settings } from "lucide-react";
+import { IoIosAddCircleOutline } from "react-icons/io";
 
 interface DockProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
 }
 
-export const Dock = ({ activeTab, setActiveTab } :DockProps) => {
+export const Dock = ({ activeTab, setActiveTab }: DockProps) => {
+
   return (
     <div className="p-2 z-100 ">
       <div className="flex items-center space-x-2 rounded-2xl bg-white/10 backdrop-blur-md border border-gray-800 shadow-lg w-fit">
@@ -25,7 +27,7 @@ export const Dock = ({ activeTab, setActiveTab } :DockProps) => {
           <AiOutlineUser size={24} className="text-gray-300" />
         </DockIcon>
 
-         <DockIcon onClick={() => setActiveTab("Logs")} active={activeTab === "Logs"}>
+        <DockIcon onClick={() => setActiveTab("Logs")} active={activeTab === "Logs"}>
           <BiTerminal size={24} className="text-gray-300" />
         </DockIcon>
 
@@ -35,9 +37,23 @@ export const Dock = ({ activeTab, setActiveTab } :DockProps) => {
         <DockIcon onClick={() => setActiveTab("Progress")} active={activeTab === "Progress"}>
           <FaGithub size={24} className="text-gray-300" />
         </DockIcon>
-         <DockIcon onClick={() => setActiveTab("Settings")} active={activeTab === "Settings"}>
+        <DockIcon onClick={() => setActiveTab("Settings")} active={activeTab === "Settings"}>
           <Settings size={24} className="text-gray-300" />
         </DockIcon>
+
+        {(activeTab === "Contract" || activeTab === "Tasks") && (
+          <>
+            <div className="h-6 w-px bg-gray-700 mx-2"></div>
+            <DockIcon onClick={() => setActiveTab("Add")}>
+              <IoIosAddCircleOutline size={24} className="text-gray-300" />
+            </DockIcon>
+          </>
+        )}
+
+
+
+
+
       </div>
     </div>
   );
