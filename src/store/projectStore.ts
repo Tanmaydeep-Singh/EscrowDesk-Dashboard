@@ -8,7 +8,7 @@ export interface Project {
   id: string;
   name: string;
   description: string;
-  freelancer?: string; // user._id
+  budget?:number;
   tasks: string[];
   logs: string[];
   documents: string[];
@@ -24,7 +24,7 @@ interface ProjectState {
   error: string | null;
 
   fetchProjects: () => Promise<void>;
-  createProject: (name: string, description: string) => Promise<void>;
+  createProject: (name: string, description: string , budget: number) => Promise<void>;
 }
 
 export const useProjectStore = create<ProjectState>((set) => ({
@@ -42,7 +42,7 @@ export const useProjectStore = create<ProjectState>((set) => ({
     }
   },
 
-  createProject: async (name, description) => {
+  createProject: async (name, description,budget) => {
     const user = useUserStore.getState().users[0]; // logged-in user
     if (!user) {
       set({ error: "No logged-in user found" });
@@ -50,11 +50,14 @@ export const useProjectStore = create<ProjectState>((set) => ({
     }
 
     try {
-      const res = await api.post("/projects", {
+      console.log("Created project:", user._id);
+
+        const res = await api.post("/projects", {
         name,
         description,
-        freelancer: user.id, // assign logged-in user as freelancer for now
+        budget,
       });
+
 
       console.log("Created project:", res.data);
       set((state) => ({ projects: [...state.projects, res.data] }));

@@ -1,17 +1,27 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion"; 
+import { useProjectStore } from "@/store/projectStore";
 interface ProjectModalProps {
   onClose: () => void;
 }
 
 const ProjectModal = ({ onClose } : ProjectModalProps) => {
+  const { createProject } = useProjectStore();
+
   const [projectName, setProjectName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [status, setStatus] = useState<"Active" | "On Hold" | "Completed">("Active");
-  const [budget, setBudget] = useState<string>("");
+  const [budget, setBudget] = useState<number>(0);
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
+
+
+  const handleCreateProject = async () => {
+    console.log("Create project called");
+    createProject(projectName,description, budget );
+    onClose();
+  }
 
   return (
   <motion.div
@@ -93,7 +103,7 @@ const ProjectModal = ({ onClose } : ProjectModalProps) => {
                 type="number"
                 value={budget}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setBudget(e.target.value)
+                  setBudget(Number(e.target.value))
                 }
                 placeholder="Enter budget amount"
                 className="w-full mt-1 px-3 py-2 rounded-md bg-transparent border border-gray-700 focus:border-indigo-500 outline-none"
@@ -138,7 +148,9 @@ const ProjectModal = ({ onClose } : ProjectModalProps) => {
             Cancel
           </button>
           <button className="px-4 py-2 rounded-xl bg-white text-black text-sm font-medium 
-                             shadow-md hover:opacity-90 transition">
+                             shadow-md hover:opacity-90 transition"
+            onClick={() => handleCreateProject()}
+                            >
             Create Project
           </button>
         </div>

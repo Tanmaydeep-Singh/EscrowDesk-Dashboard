@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useProjectStore } from '@/store/projectStore';
 
 const projectsData = [
     { id: 1, name: "Website Redesign", client: "Olivia Rhye", progress: 70, eod: "2025-09-30", status: "In Progress" },
@@ -23,10 +24,19 @@ const projectsData = [
 const ProjectsTable = () => {
     const [page, setPage] = useState(1);
     const itemsPerPage = 8; // Increased items per page to show more data
+ const { fetchProjects, projects } = useProjectStore();
 
-    const totalPages = Math.ceil(projectsData.length / itemsPerPage);
+  useEffect(() => {
+    const loadProjects = async () => {
+      await fetchProjects(); // call the async function
+      console.log("projects after fetch:", projects); // this may still be empty here due to state update being async
+    };
+
+    loadProjects();
+  }, [fetchProjects]); // optional: usually just [fetchProjects]
+    const totalPages = Math.ceil(projects.length / itemsPerPage);
     const startIndex = (page - 1) * itemsPerPage;
-    const displayedProjects = projectsData.slice(startIndex, startIndex + itemsPerPage);
+    const displayedProjects = projects.slice(startIndex, startIndex + itemsPerPage);
 
     return (
         <div className="min-h-[70vh]    text-gray-200 font-sans flex flex-col justify-between items-center">
@@ -50,8 +60,8 @@ const ProjectsTable = () => {
                                 <tr>
                                     <th className="p-4 rounded-tl-2xl">#</th>
                                     <th className="p-4">Project Name</th>
-                                    <th className="p-4">Client</th>
-                                    <th className="p-4">Progress</th>
+                                    <th className="p-4">Description</th>
+                                    {/* <th className="p-4">Progress</th> */}
                                     <th className="p-4">EOD</th>
                                     <th className="p-4">Status</th>
                                     <th className="p-4 text-center rounded-tr-2xl">Action</th>
@@ -68,22 +78,22 @@ const ProjectsTable = () => {
                                     >
                                         <td className="p-4">{startIndex + idx + 1}</td>
                                         <td className="p-4 font-semibold text-white">{project.name}</td>
-                                        <td className="p-4 text-gray-300">{project.client}</td>
-                                        <td className="p-4">
+                                        <td className="p-4 text-gray-300">{project?.description}</td>
+                                        {/* <td className="p-4">
                                             <div className="w-32 bg-gray-700 rounded-full h-2">
                                                 <div
                                                     className="bg-gradient-to-r from-purple-500 to-blue-500 h-2 rounded-full"
-                                                    style={{ width: `${project.progress}%` }}
+                                                    style={{ width: `${project?.progress}%` }}
                                                 ></div>
                                             </div>
-                                            <span className="text-sm text-gray-400">{project.progress}%</span>
-                                        </td>
-                                        <td className="p-4 text-gray-300">{project.eod}</td>
+                                            <span className="text-sm text-gray-400">{project?.progress}%</span>
+                                        </td> */}
+                                        <td className="p-4 text-gray-300">{project?.deadline}</td>
                                         <td className="p-4">
                                             <span
-                                                className={`px-3 py-1 text-xs rounded-full font-medium ${project.status === "Completed"
+                                                className={`px-3 py-1 text-xs rounded-full font-medium ${project.status === "completed"
                                                     ? "bg-green-600/20 text-green-400 border border-green-600"
-                                                    : project.status === "Pending"
+                                                    : project.status === "pending"
                                                         ? "bg-yellow-600/20 text-yellow-400 border border-yellow-600"
                                                         : "bg-blue-600/20 text-blue-400 border border-blue-600"
                                                     }`}
@@ -93,7 +103,7 @@ const ProjectsTable = () => {
                                         </td>
                                         <td className="p-4 text-center">
                                             <button className="px-4 py-1.5 text-sm font-medium rounded-full border border-purple-500 text-purple-400 hover:bg-purple-500/10 transition">
-                                                <Link href={`/project/${project.id}`} >
+                                                <Link href={`/project/${project?._id}`} >
                                                     View
                                                 </Link>
                                             </button>
