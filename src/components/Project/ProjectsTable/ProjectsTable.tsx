@@ -61,8 +61,8 @@ const ProjectsTable = () => {
                                     <th className="p-4 rounded-tl-2xl">#</th>
                                     <th className="p-4">Project Name</th>
                                     <th className="p-4">Description</th>
-                                    {/* <th className="p-4">Progress</th> */}
-                                    <th className="p-4">EOD</th>
+                                    <th className="p-4">Progress</th>
+                                    <th className="p-4">Client</th>
                                     <th className="p-4">Status</th>
                                     <th className="p-4 text-center rounded-tr-2xl">Action</th>
                                 </tr>
@@ -79,7 +79,7 @@ const ProjectsTable = () => {
                                         <td className="p-4">{startIndex + idx + 1}</td>
                                         <td className="p-4 font-semibold text-white">{project.name}</td>
                                         <td className="p-4 text-gray-300">{project?.description}</td>
-                                        {/* <td className="p-4">
+                                        <td className="p-4">
                                             <div className="w-32 bg-gray-700 rounded-full h-2">
                                                 <div
                                                     className="bg-gradient-to-r from-purple-500 to-blue-500 h-2 rounded-full"
@@ -87,8 +87,8 @@ const ProjectsTable = () => {
                                                 ></div>
                                             </div>
                                             <span className="text-sm text-gray-400">{project?.progress}%</span>
-                                        </td> */}
-                                        <td className="p-4 text-gray-300">{project?.deadline}</td>
+                                        </td>
+                                        <td className="p-4 text-gray-300">{project?.client || "N.A"}</td>
                                         <td className="p-4">
                                             <span
                                                 className={`px-3 py-1 text-xs rounded-full font-medium ${project.status === "completed"

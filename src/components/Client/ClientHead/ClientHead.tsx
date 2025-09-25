@@ -5,7 +5,7 @@ const ClientHead = () => {
     const [clientModal, setClientModal] = useState(false);
 
     return (
-        <div className="flex items-center justify-between w-full mb-6">
+        <div className="relative z-100 pointer-events-auto flex items-center justify-between w-full mb-6">
             <div>
                 <h1 className="text-2xl font-bold text-white">Clients</h1>
                 <p className="text-gray-400">

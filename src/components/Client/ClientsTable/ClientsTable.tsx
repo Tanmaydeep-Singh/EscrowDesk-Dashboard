@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useClientStore } from '@/store/clientStore';
 
 const clientsData = [
     { id: 1, name: "Olivia Rhye", company: "Aperture Labs", projects: 3, joined: "2024-05-15", status: "Active" },
@@ -21,11 +22,25 @@ const clientsData = [
 
 const ClientsTable = () => {
     const [page, setPage] = useState(1);
+    const { fetchClients, clients } = useClientStore();
+
+    useEffect(() => {
+        const loadClients = async () => {
+            await fetchClients(); // call the async function
+            console.log("clients after fetch:", clients); // this may still be empty here due to state update being async
+        };
+
+        loadClients();
+    }, [fetchClients]); // optional: usually just [fetchProjects]
+
+
     const itemsPerPage = 8;
 
-    const totalPages = Math.ceil(clientsData.length / itemsPerPage);
+
+
+    const totalPages = Math.ceil(clients.length / itemsPerPage);
     const startIndex = (page - 1) * itemsPerPage;
-    const displayedClients = clientsData.slice(startIndex, startIndex + itemsPerPage);
+    const displayedClients = clients.slice(startIndex, startIndex + itemsPerPage);
 
     return (
         <div className="min-h-[70vh] font-sans flex flex-col justify-between items-center">
@@ -37,7 +52,7 @@ const ClientsTable = () => {
             </div>
 
             <div className="w-full flex-grow flex flex-col items-center z-10">
-               
+
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -68,9 +83,10 @@ const ClientsTable = () => {
                                     >
                                         <td className="p-4">{startIndex + idx + 1}</td>
                                         <td className="p-4 font-semibold text-white">{client.name}</td>
+    
                                         <td className="p-4 text-gray-300">{client.company}</td>
-                                        <td className="p-4 text-gray-300">{client.projects}</td>
-                                        <td className="p-4 text-gray-300">{client.joined}</td>
+                                        <td className="p-4 text-gray-300">{client?.projects || 0}</td>
+                                        <td className="p-4 text-gray-300">  {new Date(client.createdAt).toLocaleDateString()}</td>
                                         <td className="p-4">
                                             <span
                                                 className={`px-3 py-1 text-xs rounded-full font-medium ${client.status === "Active"
@@ -93,7 +109,7 @@ const ClientsTable = () => {
                                 {/* Add empty rows to fill space */}
                                 {Array.from({ length: itemsPerPage - displayedClients.length }).map((_, index) => (
                                     <tr key={`empty-${index}`} className="h-[74px] border-b border-white/5">
-                                        <td  className="p-4"></td>
+                                        <td className="p-4"></td>
                                     </tr>
                                 ))}
                             </tbody>
