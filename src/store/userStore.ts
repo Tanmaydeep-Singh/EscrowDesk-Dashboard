@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// store/userStore.ts
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 import api from "@/libs/axios";
-import axios from "axios";
 
 export interface User {
   id: string;
-  name: string;
+  name?: string;
   walletAddress: string;
 }
 
@@ -20,29 +19,35 @@ interface UserState {
   createUser: (walletAddress: string) => Promise<void>;
 }
 
-export const useUserStore = create<UserState>((set) => ({
-  users: [],
-  selectedUser: null,
-  loading: false,
-  error: null,
+export const useUserStore = create<UserState>()(
+  persist(
+    (set) => ({
+      users: [],
+      selectedUser: null,
+      loading: false,
+      error: null,
 
-  fetchUsers: async () => {
-    set({ loading: true, error: null });
-    try {
-      const res = await api.get("/api/users/me");
-      set({ users: res.data, loading: false });
-    } catch (err: any) {
-      set({ error: err.message, loading: false });
-    }
-  },
+      fetchUsers: async () => {
+        set({ loading: true, error: null });
+        try {
+          const res = await api.get("/users/me"); // ✅ relative to baseURL
+          set({ users: Array.isArray(res.data) ? res.data : [res.data], loading: false });
+        } catch (err: any) {
+          set({ error: err.message, loading: false });
+        }
+      },
 
-  createUser: async (walletAddress) => {
-    try {
-      const res = await axios.post("http://localhost:5000/api/users/wallet", { walletAddress });
-      console.log("called2", res.data);
-      set((state) => ({ users: [...state.users, res.data] }));
-    } catch (err: any) {
-      set({ error: err.message });
+      createUser: async (walletAddress) => {
+        try {
+          const res = await api.post("/users/wallet", { walletAddress });
+          set((state) => ({ users: [...state.users, res.data.user] }));
+        } catch (err: any) {
+          set({ error: err.message });
+        }
+      },
+    }),
+    {
+      name: "user-storage",
     }
-  },
-}));
+  )
+);
