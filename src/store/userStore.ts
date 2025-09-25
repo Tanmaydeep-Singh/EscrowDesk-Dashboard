@@ -2,6 +2,7 @@
 // store/userStore.ts
 import { create } from "zustand";
 import api from "@/libs/axios";
+import axios from "axios";
 
 export interface User {
   id: string;
@@ -37,7 +38,8 @@ export const useUserStore = create<UserState>((set) => ({
 
   createUser: async (walletAddress) => {
     try {
-      const res = await api.post("/api/users/wallet", { walletAddress });
+      const res = await axios.post("http://localhost:5000/api/users/wallet", { walletAddress });
+      console.log("called2", res.data);
       set((state) => ({ users: [...state.users, res.data] }));
     } catch (err: any) {
       set({ error: err.message });
