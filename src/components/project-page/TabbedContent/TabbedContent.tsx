@@ -15,8 +15,8 @@ const tabs = [
   { name: "Tasks", component: <TasksTab /> },
   { name: "Contract", component: <ContractTab /> },
   { name: "Progress", component: <ProgressTab /> },
-  { name: "Logs", component: <LogsTab/>},
-  { name: "Settings",component: <SettingsTab/>}
+  { name: "Logs", component: <LogsTab /> },
+  { name: "Settings", component: <SettingsTab /> }
 ];
 
 const TabbedContent = () => {
@@ -46,6 +46,8 @@ const TabbedContent = () => {
 
           {/* Tab Content */}
           <div className="flex-grow p-4 overflow-y-auto">
+
+          
             {tabs.find((t) => t.name === activeTab)?.component}
           </div>
         </motion.div>

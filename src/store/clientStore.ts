@@ -4,6 +4,10 @@ import { create } from "zustand";
 import api from "@/libs/axios";
 
 export interface Client {
+  createdAt: Date;
+  projects: number;
+  joined: Date;
+  status: string;
   id: string;
   name: string;
   email: string;

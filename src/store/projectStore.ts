@@ -5,6 +5,9 @@ import api from "@/libs/axios";
 import { useUserStore } from "./userStore";
 
 export interface Project {
+  client: string;
+  progress: any;
+  _id: any;
   id: string;
   name: string;
   description: string;

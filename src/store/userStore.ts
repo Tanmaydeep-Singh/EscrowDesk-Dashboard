@@ -4,6 +4,7 @@ import { persist } from "zustand/middleware";
 import api from "@/libs/axios";
 
 export interface User {
+  _id(arg0: string, _id: any): unknown;
   id: string;
   name?: string;
   walletAddress: string;

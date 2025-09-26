@@ -1,5 +1,5 @@
   "use client";
-  import React from "react";
+  import React, { useState } from "react";
   import { AiOutlineEdit, AiOutlineFileText, AiOutlineUser } from "react-icons/ai";
   import { FaGithub } from "react-icons/fa6";
   import { DockIcon } from "./DockIcons";
@@ -7,6 +7,8 @@
   import { Settings } from "lucide-react";
   import { IoIosAddCircleOutline } from "react-icons/io";
   import { motion, AnimatePresence } from "framer-motion";
+import TaskModal from "../Model/TasksModel";
+import { useTaskStore } from "@/store/tasksStore";
 
   interface DockProps {
     activeTab: string;
@@ -14,7 +16,10 @@
   }
 
   export const Dock = ({ activeTab, setActiveTab }: DockProps) => {
-    return (
+
+  const taskModaltoggle = useTaskStore((state) => state.taskModaltoggle);
+
+     return (
       <div className="p-2 z-100">
         {/* Animate the whole dock for smooth expansion */}
         <motion.div
@@ -59,12 +64,15 @@
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                   layout
                 >
-                  <DockIcon onClick={() => setActiveTab("Add")}>
+                  <DockIcon onClick={taskModaltoggle}>
+                  
                     <IoIosAddCircleOutline size={24} className="text-gray-300" />
                   </DockIcon>
                 </motion.div>
               </>
             )}
+
+             
           </AnimatePresence>
         </motion.div>
       </div>
