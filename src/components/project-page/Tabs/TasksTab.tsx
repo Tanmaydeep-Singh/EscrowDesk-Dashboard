@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useTaskStore } from "@/store/tasksStore";
 
 // Example tasks & milestones data
 const tasksData = [
@@ -81,10 +82,21 @@ const tasksData = [
 const TasksTab = () => {
   const [page, setPage] = useState(1);
   const itemsPerPage = 6;
+   // Increased items per page to show more data
+   const { fetchTasks , tasks } = useTaskStore();
+  
+    useEffect(() => {
+      const loadProjects = async () => {
+        await fetchTasks(); // call the async function
+        console.log("projects after fetch:", tasks); // this may still be empty here due to state update being async
+      };
+  
+      loadProjects();
+    }, [fetchTasks]); // optional: usually just [fetchProjects
 
-  const totalPages = Math.ceil(tasksData.length / itemsPerPage);
+  const totalPages = Math.ceil(tasks.length / itemsPerPage);
   const startIndex = (page - 1) * itemsPerPage;
-  const displayedTasks = tasksData.slice(startIndex, startIndex + itemsPerPage);
+  const displayedTasks = tasks.slice(startIndex, startIndex + itemsPerPage);
 
   return (
     <div className="text-gray-200 font-sans flex flex-col justify-between items-center">
@@ -156,7 +168,7 @@ const TasksTab = () => {
                       </span>
                     </td>
                     <td className="p-4 text-gray-300">{task.assignee}</td>
-                    <td className="p-4 text-gray-300">{task.due}</td>
+                    <td className="p-4 text-gray-300">{task?.dueDate.split("T")[0] }</td>
                     <td className="p-4 text-gray-300">{task.milestone}</td>
                     <td className="p-4 text-center">
                       <button className="px-4 py-1.5 text-sm font-medium rounded-full border border-purple-500 text-purple-400 hover:bg-purple-500/10 transition">

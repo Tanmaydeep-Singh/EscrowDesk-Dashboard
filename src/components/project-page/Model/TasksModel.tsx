@@ -8,9 +8,9 @@ interface TaskModalProps {
 }
 
 const TaskModal = ({ onClose }: TaskModalProps) => {
-  const [taskName, setTaskName] = useState<string>("");
-  const [priority, setPriority] = useState<string>("Medium");
-  const [status, setStatus] = useState<string>("Pending");
+  const [name, setTaskName] = useState<string>("");
+  const [priority, setPriority] = useState<string>("medium");
+  const [status, setStatus] = useState<string>("pending");
   const [assignee, setAssignee] = useState<string>("");
   const [dueDate, setDueDate] = useState<string>("");
   const [milestone, setMilestone] = useState<string>("");
@@ -18,7 +18,7 @@ const TaskModal = ({ onClose }: TaskModalProps) => {
   const { createTask } = useTaskStore();
 
   const handleCreate = () => {
-    createTask({ taskName, priority, status, assignee, dueDate, milestone });
+    createTask({ name, priority, status, assignee, dueDate, milestone });
     onClose();
   };
 
@@ -48,7 +48,7 @@ const TaskModal = ({ onClose }: TaskModalProps) => {
             <label className="text-sm">Task Name</label>
             <input
               type="text"
-              value={taskName}
+              value={name}
               onChange={(e) => setTaskName(e.target.value)}
               placeholder="Enter task name"
               className="w-full mt-1 px-3 py-2 rounded-md bg-transparent border border-gray-700 focus:border-indigo-500 outline-none"
@@ -63,9 +63,9 @@ const TaskModal = ({ onClose }: TaskModalProps) => {
               onChange={(e) => setPriority(e.target.value)}
               className="w-full mt-1 px-3 py-2 rounded-md bg-transparent border border-gray-700 focus:border-indigo-500 outline-none"
             >
-              <option value="High">High</option>
-              <option value="Medium">Medium</option>
-              <option value="Low">Low</option>
+              <option value="igh">High</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
             </select>
           </div>
 
@@ -77,9 +77,9 @@ const TaskModal = ({ onClose }: TaskModalProps) => {
               onChange={(e) => setStatus(e.target.value)}
               className="w-full mt-1 px-3 py-2 rounded-md bg-transparent border border-gray-700 focus:border-indigo-500 outline-none"
             >
-              <option value="Pending">Pending</option>
-              <option value="In Progress">In Progress</option>
-              <option value="Completed">Completed</option>
+              <option value="pending">Pending</option>
+              <option value="in-progress">In Progress</option>
+              <option value="completed">Completed</option>
             </select>
           </div>
 
