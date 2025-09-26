@@ -83,9 +83,9 @@ const ClientsTable = () => {
                                     >
                                         <td className="p-4">{startIndex + idx + 1}</td>
                                         <td className="p-4 font-semibold text-white">{client.name}</td>
-    
+
                                         <td className="p-4 text-gray-300">{client.company}</td>
-                                        <td className="p-4 text-gray-300">{client?.projects || 0}</td>
+                                        <td className="p-4 text-gray-300">{client?.projects?.length ?? 0}</td>
                                         <td className="p-4 text-gray-300">  {new Date(client.createdAt).toLocaleDateString()}</td>
                                         <td className="p-4">
                                             <span
@@ -96,7 +96,7 @@ const ClientsTable = () => {
                                                         : "bg-blue-600/20 text-blue-400 border border-blue-600"
                                                     }`}
                                             >
-                                                {client.status}
+                                                offline
                                             </span>
                                         </td>
                                         <td className="p-4 text-center">

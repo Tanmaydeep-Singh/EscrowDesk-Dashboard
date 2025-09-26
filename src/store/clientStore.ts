@@ -5,7 +5,7 @@ import api from "@/libs/axios";
 
 export interface Client {
   createdAt: Date;
-  projects: number;
+  projects: [];
   joined: Date;
   status: string;
   id: string;
